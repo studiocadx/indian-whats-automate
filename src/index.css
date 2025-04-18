@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -96,6 +98,63 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-brand-surface text-brand-dark font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-primary hover:bg-brand-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-brand-secondary hover:bg-brand-secondary/90 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg;
+  }
+  
+  .btn-accent {
+    @apply bg-brand-accent hover:bg-brand-accent/90 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg;
+  }
+
+  .btn-whatsapp {
+    @apply bg-brand-whatsapp hover:bg-brand-whatsapp/90 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2;
+  }
+  
+  .btn-ghost {
+    @apply border border-brand-dark/20 hover:border-brand-dark/40 bg-transparent text-brand-dark font-medium py-3 px-6 rounded-lg transition-all;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .feature-card {
+    @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100;
+  }
+
+  .feature-icon {
+    @apply text-brand-primary w-12 h-12 mb-4;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
   }
 }

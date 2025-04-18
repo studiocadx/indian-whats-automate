@@ -61,7 +61,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        // Custom brand colors for WhatsApp automation platform
+        brand: {
+          primary: '#1A5D1A',      // Deep green
+          secondary: '#1E3A8A',    // Deep blue 
+          accent: '#F97316',       // Vibrant orange
+          light: '#E6F7FF',        // Light blue
+          whatsapp: '#25D366',     // WhatsApp green
+          dark: '#1E293B',         // Dark slate
+          muted: '#94A3B8',        // Muted slate
+          surface: '#F8FAFC',      // Light background
+          white: '#FFFFFF'
+        }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +96,30 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
+        'pulse-light': {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.8 }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-light': 'pulse-light 2s ease-in-out infinite'
+			},
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ['Poppins', 'sans-serif']
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-pattern': 'url("/images/hero-pattern.svg")',
+      }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
