@@ -20,13 +20,15 @@ const formSchema = z.object({
   provider: z.enum(["360Dialog", "Wati", "Twilio", "Other"])
 });
 
+type FormData = z.infer<typeof formSchema>;
+
 interface ConnectWhatsAppProps {
   initialData: {
     phoneNumber: string;
     apiKey: string;
     provider: string;
   };
-  onSubmit: (data: z.infer<typeof formSchema>) => void;
+  onSubmit: (data: FormData) => void;
 }
 
 const ConnectWhatsApp = ({ initialData, onSubmit }: ConnectWhatsAppProps) => {
@@ -34,7 +36,7 @@ const ConnectWhatsApp = ({ initialData, onSubmit }: ConnectWhatsAppProps) => {
   const [activeTab, setActiveTab] = useState<string>("connect");
 
   // Initialize form
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       phoneNumber: initialData.phoneNumber,
@@ -44,7 +46,7 @@ const ConnectWhatsApp = ({ initialData, onSubmit }: ConnectWhatsAppProps) => {
   });
 
   // Form submit handler
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+  const handleSubmit = async (values: FormData) => {
     setIsLoading(true);
     // Simulate API validation
     await new Promise(resolve => setTimeout(resolve, 1500));
