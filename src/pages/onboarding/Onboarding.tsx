@@ -7,12 +7,20 @@ import ConnectWhatsApp from "@/components/onboarding/ConnectWhatsApp";
 import SelectTemplate from "@/components/onboarding/SelectTemplate";
 import OnboardingComplete from "@/components/onboarding/OnboardingComplete";
 import { scrollToSection } from "@/utils/scrollUtils";
+import { z } from "zod";
+
+// Define the WhatsApp data type to match the FormData from ConnectWhatsApp
+type WhatsAppData = {
+  phoneNumber: string;
+  apiKey: string;
+  provider: "360Dialog" | "Wati" | "Twilio" | "Other";
+};
 
 const Onboarding = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
-  const [whatsappData, setWhatsappData] = useState({
+  const [whatsappData, setWhatsappData] = useState<WhatsAppData>({
     phoneNumber: "",
     apiKey: "",
     provider: "360Dialog"
@@ -44,7 +52,7 @@ const Onboarding = () => {
     setCurrentStep(prev => prev - 1);
   };
 
-  const handleWhatsAppSubmit = (data: typeof whatsappData) => {
+  const handleWhatsAppSubmit = (data: WhatsAppData) => {
     setWhatsappData(data);
     handleNext();
   };
