@@ -1,8 +1,20 @@
 
 import { MessageSquare } from "lucide-react";
 import ButtonWithLoading from "./ButtonWithLoading";
+import { useNavigate } from "react-router-dom";
 
 const CTASection = () => {
+  const navigate = useNavigate();
+
+  const handleStartFreeTrial = () => {
+    navigate("/signup");
+  };
+
+  const handleScheduleDemo = () => {
+    // In a real app, this would open a scheduling page or modal
+    window.open("https://calendly.com/example/demo", "_blank");
+  };
+
   return (
     <section className="py-16 bg-brand-primary text-white">
       <div className="container-custom">
@@ -41,10 +53,16 @@ const CTASection = () => {
               </ul>
             </div>
             <div className="md:w-1/3 flex flex-col gap-4">
-              <ButtonWithLoading className="bg-white text-brand-primary hover:bg-white/90 font-semibold py-4 px-6 rounded-lg transition-all shadow-md hover:shadow-lg text-lg">
+              <ButtonWithLoading 
+                className="bg-white text-brand-primary hover:bg-white/90 font-semibold py-4 px-6 rounded-lg transition-all shadow-md hover:shadow-lg text-lg"
+                onClick={handleStartFreeTrial}
+              >
                 Start Your Free Trial
               </ButtonWithLoading>
-              <ButtonWithLoading className="bg-transparent border border-white text-white hover:bg-white/10 font-medium py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-2 text-lg">
+              <ButtonWithLoading 
+                className="bg-transparent border border-white text-white hover:bg-white/10 font-medium py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-2 text-lg"
+                onClick={handleScheduleDemo}
+              >
                 <MessageSquare size={20} />
                 Schedule a Demo
               </ButtonWithLoading>

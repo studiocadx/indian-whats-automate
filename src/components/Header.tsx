@@ -1,11 +1,20 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { scrollToSection } from "@/utils/scrollUtils";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleStartFreeTrial = () => {
+    navigate("/signup");
+  };
 
   return (
     <header className="py-4 border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
@@ -46,8 +55,8 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <button className="btn-ghost">Login</button>
-          <button className="btn-primary">Start Free Trial</button>
+          <button className="btn-ghost" onClick={handleLogin}>Login</button>
+          <button className="btn-primary" onClick={handleStartFreeTrial}>Start Free Trial</button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -99,8 +108,14 @@ const Header = () => {
               Pricing
             </button>
             <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
-              <button className="btn-ghost w-full">Login</button>
-              <button className="btn-primary w-full">Start Free Trial</button>
+              <button className="btn-ghost w-full" onClick={() => {
+                handleLogin();
+                setIsMenuOpen(false);
+              }}>Login</button>
+              <button className="btn-primary w-full" onClick={() => {
+                handleStartFreeTrial();
+                setIsMenuOpen(false);
+              }}>Start Free Trial</button>
             </div>
           </div>
         </div>

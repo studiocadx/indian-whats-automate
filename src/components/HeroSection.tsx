@@ -2,8 +2,20 @@
 import { MessageSquare, Send } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import ButtonWithLoading from "./ButtonWithLoading";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleStartFreeTrial = () => {
+    navigate("/signup");
+  };
+
+  const handleWhatsAppDemo = () => {
+    // In a real app, this would open a WhatsApp link or show a demo
+    window.open("https://wa.me/1234567890?text=I'm%20interested%20in%20a%20demo", "_blank");
+  };
+
   return (
     <section className="pt-16 pb-20 md:pt-20 md:pb-28 bg-gradient-to-b from-brand-light to-white relative overflow-hidden">
       {/* Background Elements */}
@@ -21,11 +33,17 @@ const HeroSection = () => {
               Save time, increase sales, and delight customers in minutes with our no-code platform designed for Indian SMEs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <ButtonWithLoading className="btn-primary flex items-center justify-center gap-2">
+              <ButtonWithLoading 
+                className="btn-primary flex items-center justify-center gap-2"
+                onClick={handleStartFreeTrial}
+              >
                 <span>Start Free Trial</span>
                 <Send size={18} />
               </ButtonWithLoading>
-              <ButtonWithLoading className="btn-whatsapp">
+              <ButtonWithLoading 
+                className="btn-whatsapp"
+                onClick={handleWhatsAppDemo}
+              >
                 <MessageSquare size={20} className="mr-2" /> 
                 See Demo on WhatsApp
               </ButtonWithLoading>
